@@ -3,6 +3,7 @@ defmodule Hangman do
   alias Hangman.Type, as: Type
 
   @opaque game :: Game.t()
+  @opaque tally :: Type.tally()
   @type word :: String.t()
 
   @spec new_game() :: game

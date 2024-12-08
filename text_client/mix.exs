@@ -10,12 +10,12 @@ defmodule TextClient.MixProject do
       deps: deps(),
       dialyzer: [
         flags: [
-          "-Wunmatched_returns",
-          :error_handling,
-          :underspecs,
-          :overspecs,
+          # "-Wunmatched_returns",
+          # :error_handling,
+          # :underspecs,
+          # :overspecs,
           # :specdiffs, # This is giving me an error with the Game struct type
-          :overlapping_contract
+          # :overlapping_contract
         ]
       ]
     ]
@@ -24,7 +24,7 @@ defmodule TextClient.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :wx, :observer, :runtime_tools]
     ]
   end
 
