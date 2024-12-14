@@ -7,7 +7,7 @@ defmodule Procs do
   """
 
   @doc """
-  Prints a greeting to the given name after a 1-second delay.
+  Receives a message then prints it.
 
   ## Parameters
 
@@ -20,8 +20,31 @@ defmodule Procs do
       "hello Alice\\n"
 
   """ 
-  def hello(name) do
-    Process.sleep(1000)
-    IO.puts("hello #{name}")
+  def hello(count) do
+    receive do
+      { :crash, reason } ->
+        exit(reason)
+      { :quit } ->
+        IO.puts "I'm outta here"
+      { :add, n } ->
+        hello(count + n)
+      msg ->
+        IO.puts("#{count}: Hello #{inspect msg}")
+        hello(count)
+    end
+  end
+
+  def greeting(count) do
+    receive do
+      { :quit } ->
+        IO.puts "I'm outta here"
+      { :reset } -> 
+        greeting(0)
+      { :add, n } ->
+        greeting(count + n)
+      msg ->
+        IO.puts("#{count}: Hello #{inspect msg}")
+        greeting(count + 1)
+    end
   end
 end
