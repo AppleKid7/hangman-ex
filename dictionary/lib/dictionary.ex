@@ -19,11 +19,8 @@ defmodule Dictionary do
       "weapon"
 
   """
-  @spec start_link :: { :ok, t }
-  defdelegate start_link, to: Server
-
-  @spec random_word(t) :: String.t
-  defdelegate random_word(words), to: Server
+  @spec random_word() :: String.t
+  defdelegate random_word(), to: Server
 
   # def random_word do
   #   @word_list
