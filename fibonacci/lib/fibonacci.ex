@@ -2,9 +2,11 @@ defmodule Fibonacci do
   @type t :: pid
   @me __MODULE__
 
+  use Agent
+
   alias Fibonacci.Cache, as: Cache
 
-  def start_link do
+  def start_link(_) do
     Agent.start_link(fn -> %{ 0=> 0, 1 => 1 } end, name: @me)
   end
 
