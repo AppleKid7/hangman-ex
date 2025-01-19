@@ -5,4 +5,8 @@ defmodule Fibonacci.Runtime.Application do
     Fibonacci.start_link()
   end
 
+  def run(n) do
+    Fibonacci.fib(n)
+  end
+
 end

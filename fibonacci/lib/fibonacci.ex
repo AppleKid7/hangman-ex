@@ -1,16 +1,16 @@
 defmodule Fibonacci do
-
-  alias Fibonacci.Cache, as: Cache
-
   @type t :: pid
   @me __MODULE__
 
+  alias Fibonacci.Cache, as: Cache
+
   def start_link do
-    # TODO find a way to implement Agent start
+    Agent.start_link(fn -> %{ 0=> 0, 1 => 1 } end, name: @me)
   end
 
+  @spec fib(n :: integer) :: integer
   def fib(n) do
-    Cache.run(fn cache ->
+    Cache.run(@me, fn cache ->
       cached_fib(n, cache)
     end)
   end

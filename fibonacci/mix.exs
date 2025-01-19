@@ -24,6 +24,7 @@ defmodule Fibonacci.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: { Fibonacci.Runtime.Application, [] },
       extra_applications: [:logger, :wx, :observer, :runtime_tools]
     ]
   end

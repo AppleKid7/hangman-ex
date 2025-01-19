@@ -1,8 +1,7 @@
 defmodule Fibonacci.Cache do
-  def run(body) do
-    { :ok, pid } = Agent.start_link(fn -> %{ 0 => 0, 1 => 1} end)
+  def run(pid, body) do
     result = body.(pid)
-    Agent.stop(pid)
+    # Agent.stop(@me)
     result
   end
 
