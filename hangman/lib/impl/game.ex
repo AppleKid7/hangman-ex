@@ -19,10 +19,13 @@ defmodule Hangman.Impl.Game do
 
   @spec new_game :: t
   def new_game do
-    Dictionary.start()
-    |> Dictionary.random_word()
-    |> new_game()
+    Dictionary.random_word() |> new_game()
   end
+  # def new_game do
+  #   Dictionary.start()
+  #   |> Dictionary.random_word()
+  #   |> new_game()
+  # end
 
   @spec new_game(word :: binary) :: t
   def new_game(word) when is_binary(word) do
