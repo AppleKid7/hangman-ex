@@ -7,7 +7,7 @@ defmodule B1Web.Endpoint do
   @session_options [
     store: :cookie,
     key: "_b1_key",
-    signing_salt: "qf6cbhdZ",
+    signing_salt: "ACPwwHXx",
     same_site: "Lax"
   ]
 

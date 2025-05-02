@@ -19,7 +19,7 @@ config :b1, B1Web.Endpoint,
     layout: false
   ],
   pubsub_server: B1.PubSub,
-  live_view: [signing_salt: "DappJ4uV"]
+  live_view: [signing_salt: "j0RJzZTG"]
 
 # Configure esbuild (the version is required)
 config :esbuild,
