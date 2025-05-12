@@ -1,16 +1,34 @@
-This is the game
+<div id="game" class="row">
+  <div class="column">
+    <pre>
+      <%= figure_for(@tally.turns_left) %>
+    </pre>
+  </div>
+  <div class="column">
+    <table>
+    <tr>
+      <th>Turns left:</th>
+      <td><%= @tally.turns_left %></td>
+    </tr>
 
-<p>
-  Turns left: <%= @tally.turns_left %>
-</p>
-<p>
-  Letters used: <%= @tally.used |> Enum.join(", ") %>
-</p>
-<p>
-  Word so far: <%= @tally.letters |> Enum.join(" ") %>
-</p>
+    <tr>
+      <th>Letters used:</th>
+      <td class="spread"><%= @tally.used |> Enum.join(", ") %></td>
+    </tr>
 
-<.form for={@form} action="/hangman" method="put" as={:make_move}>
-  <.input field={@form[:guess]} type="text" />
-  <.button>Make next guess</.button>
-</.form>
+    <tr>
+      <th>Word so far:</th>
+      <td class="spread"><%= @tally.letters |> Enum.join(" ") %></td>
+    </tr>
+
+    <tr>
+      <th>
+      <.form for={@form} action="/hangman" method="put" as={:make_move}>
+        <.input field={@form[:guess]} type="text" />
+        <.button>Make next guess</.button>
+      </.form>
+      </th>
+    </tr>
+    </table>
+  </div>
+</div>

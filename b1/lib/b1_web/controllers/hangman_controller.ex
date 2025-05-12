@@ -10,21 +10,26 @@ defmodule B1Web.HangmanController do
 
   def new(conn, _params) do
     game = Hangman.new_game()
-    tally = Hangman.tally(game)
-    form = %{"guess" => ""} |> to_form(as: :make_move)
     conn
     |> put_session(:game, game) # Connection is immutable!
-    |> render(:game, tally: tally, layout: false, form: form)
+    |> redirect(to: ~p"/hangman/current") 
   end
 
   def update(conn, params) do
     guess = params["make_move"]["guess"]
+    put_in(conn.params["make_move"]["guess"], "")
+      |> get_session(:game)
+      |> Hangman.make_move(guess)
+    redirect(conn, to: ~p"/hangman/current")
+  end
+
+  def show(conn, _param) do
+    form = %{"guess" => ""} |> to_form(as: :make_move)
     tally =
       conn 
-        |> get_session(:game)
-        |> Hangman.make_move(guess)
-    form = %{"guess" => ""} |> to_form(as: :make_move)
-    put_in(conn.params["make_move"]["guess"], "")
-    |> render(:game, tally: tally, layout: false, form: form)
+      |> get_session(:game)
+      |> Hangman.tally()
+
+    render(conn, :game, tally: tally, form: form)
   end
 end

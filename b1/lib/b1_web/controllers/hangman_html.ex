@@ -7,4 +7,108 @@ defmodule B1Web.HangmanHTML do
   use B1Web, :html
 
   embed_templates "hangman_html/*"
+
+  def figure_for(0) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+    /|\\   |
+    / \\   |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(1) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+    /|\\   |
+    /     |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(2) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+    /|\\   |
+          |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(3) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+    /|    |
+          |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(4) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+     |    |
+          |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(5) do
+    ~s{
+     _____
+     |    |
+     |    |
+     0    |
+          |
+          |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(6) do
+    ~s{
+     _____
+     |    |
+     |    |
+          |
+          |
+          |
+          |
+    ______|
+    }
+  end
+
+  def figure_for(7) do
+    ~s{
+     _____
+     |    |
+          |
+          |
+          |
+          |
+          |
+    ______|
+    }
+  end
 end
