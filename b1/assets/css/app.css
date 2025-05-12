@@ -15,6 +15,7 @@
   
   .row {
     @apply flex flex-col md:flex-row gap-6 items-start;
+    max-height: 100%;
   }
   
   .column {
@@ -54,4 +55,21 @@
 
 .pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.tally th {
+  font-weight: normal;
+  color: #aaa;
+}
+
+.tally td {
+  font-weight: bold;
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+}
+
+form input {
+  max-width: 4rem !important;
+  font-size: 2rem !important;
+  font-weight: bold !important;
 }
