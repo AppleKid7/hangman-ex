@@ -18,15 +18,14 @@
 
     <tr>
       <th>Word so far:</th>
-      <td class="spread"><%= @tally.letters |> Enum.join(" ") %></td>
+      <td class="spread-sofar"><%= @tally.letters |> Enum.join(" ") %></td>
     </tr>
 
     </table>
 
-    <.form for={@form} action="/hangman" method="put" as={:make_move}>
-      <.input field={@form[:guess]} type="text" />
-      <.button>Make next guess</.button>
-    </.form>
+    <%= move_status(@tally.game_state) |> raw %>
 
+
+    <%= continue_or_try_again(@conn, @tally.game_state) |> raw %>
   </div>
 </div>
