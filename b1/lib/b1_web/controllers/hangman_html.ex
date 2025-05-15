@@ -8,6 +8,34 @@ defmodule B1Web.HangmanHTML do
 
   embed_templates "hangman_html/*"
 
+  #####################################################################################
+
+  attr :tally, :map, required: true
+
+  def tally_info(assigns) do
+    ~H"""
+    <table class="tally">
+    <tr>
+      <th>Turns left:</th>
+      <td><%= @tally.turns_left %></td>
+    </tr>
+
+    <tr>
+      <th>Letters used:</th>
+      <td class="spread"><%= @tally.used |> Enum.join(", ") %></td>
+    </tr>
+
+    <tr>
+      <th>Word so far:</th>
+      <td class="spread-sofar"><%= @tally.letters |> Enum.join(" ") %></td>
+    </tr>
+
+    </table>
+    """
+  end
+
+  #####################################################################################
+
   def continue_or_try_again(conn, status) when status in [ :won, :lost ] do
     path = ~p"/hangman"
     """
@@ -34,6 +62,8 @@ defmodule B1Web.HangmanHTML do
     """
   end
 
+  #####################################################################################
+
   @status_fields %{
     initializing: { "initializing", "Guess the word, a letter at a time" },
     good_guess:   { "good-guess",   "Good guess!"},
@@ -48,107 +78,7 @@ defmodule B1Web.HangmanHTML do
     "<div class='status #{class}'>#{msg}</div>"
   end
 
-  def figure_for(0) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-    /|\\   |
-    / \\   |
-          |
-    ______|
-    }
-  end
+  #####################################################################################
+  defdelegate figure_for(turns_left), to: B1Web.HangmanView.Helpers.FigureFor 
 
-  def figure_for(1) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-    /|\\   |
-    /     |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(2) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-    /|\\   |
-          |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(3) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-    /|    |
-          |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(4) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-     |    |
-          |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(5) do
-    ~s{
-     _____
-     |    |
-     |    |
-     0    |
-          |
-          |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(6) do
-    ~s{
-     _____
-     |    |
-     |    |
-          |
-          |
-          |
-          |
-    ______|
-    }
-  end
-
-  def figure_for(7) do
-    ~s{
-     _____
-     |    |
-          |
-          |
-          |
-          |
-          |
-    ______|
-    }
-  end
 end
