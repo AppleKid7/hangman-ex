@@ -4,31 +4,10 @@
       <%= figure_for(@tally.turns_left) %>
     </pre>
   </div>
+
   <div class="column">
-    <table>
-    <tr>
-      <th>Turns left:</th>
-      <td><%= @tally.turns_left %></td>
-    </tr>
-
-    <tr>
-      <th>Letters used:</th>
-      <td class="spread"><%= @tally.used |> Enum.join(", ") %></td>
-    </tr>
-
-    <tr>
-      <th>Word so far:</th>
-      <td class="spread"><%= @tally.letters |> Enum.join(" ") %></td>
-    </tr>
-
-    <tr>
-      <th>
-      <.form for={@form} action="/hangman" method="put" as={:make_move}>
-        <.input field={@form[:guess]} type="text" />
-        <.button>Make next guess</.button>
-      </.form>
-      </th>
-    </tr>
-    </table>
+    <.tally_info tally={@tally} />
+    <%= move_status(@tally.game_state) |> raw %>
+    <%= continue_or_try_again(@conn, @tally.game_state) |> raw %>
   </div>
 </div>
